@@ -1,9 +1,7 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Routes/Home";
-import Tv from "./Routes/Tv";
-import Search from "./Routes/Search";
-import Header from "./Components/Header";
+import { BrowserRouter as Router } from "react-router-dom";
+
 import { createGlobalStyle } from "styled-components";
+import Coins from "./Coins";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -66,11 +64,11 @@ table {
 }
 `
 function App() {
-    return (
-        <>
-            <GlobalStyle />
-            <Router />
-        </>)
+  return (
+    <>
+      <GlobalStyle />
+      <Coins />
+    </>)
 
 }
 export default App;
