@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -14,7 +14,6 @@ display: flex;
 justify-content:center;
 align-items:center;
 `
-
 const CoinsList = styled.ul``;
 
 const Coin = styled.li`
@@ -68,15 +67,19 @@ function Coins() {
             setLoading(false)
         })()
     }, [])
-    console.log(coins);
+
     return (
         <Container>
             <Header>
                 <Title>코인</Title>
             </Header>
             {loading ? (<Loader>loading...</Loader>) : <CoinsList>
-                {coins.map(coin => <Coin key={coin.id}><Link to={`/${coin.id}`}>
-                    <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} />{coin.name} &rarr;</Link></Coin>)}
+                {coins.map(coin =>
+                    <Coin key={coin.id}>
+                        <Link to={{ pathname: `/${coin.id}`, state: { name: coin.name } }}>
+                            <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} />{coin.name} &rarr;
+                        </Link>
+                    </Coin>)}
             </CoinsList>}
         </Container>
     )
