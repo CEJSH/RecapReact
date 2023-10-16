@@ -1,0 +1,7 @@
+node_modules
+react-masterclass/node_modules
+react-masterclass/package.json
+react-masterclass/package-lock.json
+.env
+
+react-for-beginners/node_modules
