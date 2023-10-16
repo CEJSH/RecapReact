@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { createGlobalStyle } from "styled-components";
 import Coins from "./Coins";
@@ -46,6 +46,7 @@ body {
 }
 a{
     text-decoration: none;
+    color:inherit;
 }
 menu, ol, ul {
   list-style: none;
@@ -63,11 +64,14 @@ table {
   border-spacing: 0;
 }
 `
+
 function App() {
   return (
     <>
-      <GlobalStyle />
-      <Coins />
+      <Router>
+        <GlobalStyle />
+        <Coins />
+      </Router>
     </>)
 
 }
