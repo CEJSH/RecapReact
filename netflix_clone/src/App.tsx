@@ -1,7 +1,6 @@
 import { BrowserRouter as Switch, Route } from "react-router-dom";
 import Router from "./Router";
 import { createGlobalStyle } from "styled-components";
-import Coins from "./routes/Coins";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -40,9 +39,11 @@ footer, header, hgroup, main, menu, nav, section {
     box-sizing: border-box;
 }
 body {
+  font-weight: 300;
   font-family:'Source Sans Pro', sans-serif;
   background-color: ${props => props.theme.bgColor};
-  color:${props => props.theme.textColor}
+  color:${props => props.theme.textColor};
+  line-height:1.2;
 }
 a{
     text-decoration: none;
