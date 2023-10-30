@@ -1,7 +1,8 @@
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, DropResult, Droppable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
+import DraggableCard from "./components/DraggableCard";
 
 const Wrapper = styled.div`
 display: flex;
@@ -31,12 +32,25 @@ const Card = styled.div`
   margin-bottom:5px;
   border-radius: 5px;
 `;
-const toDos = ["a", "b", "c", "d", "e", "f"];
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
-  const onDragEnd = (args: any) => {
-    console.log(args)
+  const onDragEnd = ({ draggableId, destination, source }: DropResult) => {
+    if (!destination) return;
+
+    setToDos(oldToDos => {
+      const toDosCopy = [...oldToDos];
+      // 1) Delete item on source.index
+      console.log("Delete item on", source.index)
+      console.log(toDosCopy)
+      toDosCopy.splice(source.index, 1)
+      console.log("Deleted item")
+      console.log(toDosCopy)
+      // 2) Put back the item on the destination.index
+      console.log("Put back", draggableId, "on", destination.index)
+      toDosCopy.splice(destination?.index, 0, draggableId)
+      return toDosCopy;
+    })
   }
   return <DragDropContext onDragEnd={onDragEnd}>
     <Wrapper>
@@ -44,14 +58,8 @@ function App() {
         <Droppable droppableId="one">
           {(magic) =>
             <Board ref={magic.innerRef} {...magic.droppableProps}>
-              {toDos.map((toDo, index) => <Draggable draggableId={toDo} index={index} key={index}>
-                {(magic) => (<Card
-                  ref={magic.innerRef}
-                  {...magic.draggableProps}{...magic.dragHandleProps}
-                >
-                  {toDo}
-                </Card>)}
-              </Draggable>)}
+              {toDos.map((toDo, index) => <DraggableCard key={toDo} toDo={toDo} index={index} />
+              )}
               {magic.placeholder}
             </Board>}
         </Droppable>
