@@ -1,7 +1,7 @@
-import App from "./App"
-
+import App from "./dndApp"
+import React from "react";
 import ReactDOM from "react-dom/client";
-
+import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
 import { darkTheme } from "../src/theme";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
@@ -71,12 +71,12 @@ table {
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-    // <React.StrictMode>
-    <RecoilRoot>
-        <ThemeProvider theme={darkTheme}>
-            <GlobalStyle />
-            <App />
-        </ThemeProvider>
-    </RecoilRoot>
-    // </React.StrictMode>
+  // <React.StrictMode>
+  <RecoilRoot>
+    <ThemeProvider theme={darkTheme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </RecoilRoot>
+  // </React.StrictMode>
 ); 

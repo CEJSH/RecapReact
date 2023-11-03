@@ -16,5 +16,13 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/components/ToDoList.tsx"]
+  "include": [
+    "src",
+    "src/components/ToDoList.tsx",
+    "unused/dndatoms.tsx",
+    "unused/dndApp.tsx",
+    "unused/dndindex.tsx",
+    "unused/dndBoard.tsx",
+    "unused/dndDraggableCard.tsx"
+  ]
 }
